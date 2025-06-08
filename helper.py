@@ -2,6 +2,10 @@ from faker import Faker
 import random
 
 fake = Faker('ru_RU')
+def generate_metro_search_term(full_station_name):
+    # Возьмём первые 2-3 символа (например, 3, если длина >=3, иначе всю строку)
+    length = 3 if len(full_station_name) >= 3 else len(full_station_name)
+    return full_station_name[:length]
 
 def generate_user_data():
     first_name = fake.first_name()
@@ -13,17 +17,22 @@ def generate_user_data():
     if len(last_name) < 2:
         last_name += 'в'
 
-    address = fake.street_address()
-    if len(address) < 5:
-        address += ' дом'
-    address = address[:49]
+    stations = ["Чистые пруды", "Лубянка", "Таганская"]
+    station_full = random.choice(stations)
+    station_search = station_full[:4]  # первые 4 символа для поиска
 
     return {
         "first_name": first_name,
         "last_name": last_name,
-        "address": address,
-        "metro_station": random.choice(["Чистые пруды", "Китай-город", "Таганская"]),
-        "phone": fake.phone_number(),
-        "delivery_date": fake.date_between(start_date="today", end_date="+7d").strftime("%d.%m.%Y"),
+        "address": 'тестовый адрес 123',
+        "metro_station_search": station_search,
+        "metro_station_full": station_full,
+        "phone": '88888888888',
+        "date": fake.date_between(start_date="+1d", end_date="+7d").strftime("%d.%m.%Y"),
+        "period_text": random.choice([
+            "сутки", "двое суток", "трое суток",
+            "четверо суток", "пятеро суток", "шестеро суток"
+        ]),
+        "color": random.choice(["чёрный жемчуг", "серая безысходность"]),
         "comment": fake.sentence(nb_words=6)
     }
