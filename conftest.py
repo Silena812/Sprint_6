@@ -7,8 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from curl import *
-from data import Credentials
-from locators import Locators
 
 
 @pytest.fixture(scope="function")
@@ -24,7 +22,7 @@ def driver():
             EC.element_to_be_clickable((By.ID, "rcc-confirm-button"))
         )
         close_btn.click()
-        # Ждём, пока баннер исчезнет
+
         WebDriverWait(driver, 5).until(
             EC.invisibility_of_element_located((By.CLASS_NAME, "App_CookieConsent__1yUIN"))
         )

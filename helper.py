@@ -3,7 +3,7 @@ import random
 
 fake = Faker('ru_RU')
 def generate_metro_search_term(full_station_name):
-    # Возьмём первые 2-3 символа (например, 3, если длина >=3, иначе всю строку)
+
     length = 3 if len(full_station_name) >= 3 else len(full_station_name)
     return full_station_name[:length]
 
@@ -19,8 +19,7 @@ def generate_user_data():
 
     stations = ["Чистые пруды", "Лубянка", "Таганская"]
     station_full = random.choice(stations)
-    station_search = station_full[:4]  # первые 4 символа для поиска
-
+    station_search = station_full[:4]
     return {
         "first_name": first_name,
         "last_name": last_name,
@@ -33,6 +32,6 @@ def generate_user_data():
             "сутки", "двое суток", "трое суток",
             "четверо суток", "пятеро суток", "шестеро суток"
         ]),
-        "color": random.choice(["чёрный жемчуг", "серая безысходность"]),
+        "color": random.choice(["black", "grey"]),
         "comment": fake.sentence(nb_words=6)
     }

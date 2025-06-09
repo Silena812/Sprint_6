@@ -15,11 +15,10 @@ def test_make_order_valid_data_order_created(driver, click_button_method):
     orderpage = OrderPage(driver)
     user_data = generate_user_data()
 
-    # Вызываем метод без if и без lambda
     getattr(mainpage, click_button_method)()
 
     orderpage.make_order(
-        name=user_data['first_name'],
+        first_name=user_data['first_name'],
         last_name=user_data['last_name'],
         address=user_data['address'],
         metro_search=user_data['metro_station_search'],
