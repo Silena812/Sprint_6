@@ -21,6 +21,9 @@ class OrderPage:
     cancelation_button = (By.XPATH, "//button[text()='Нет']")
     check_status_button = (By.XPATH, "//button[text()='Посмотреть статус']")
 
+    logo_yandex = (By.CLASS_NAME, 'Header_LogoYandex__3TSOI')
+    logo_samokat = (By.CLASS_NAME, 'Header_LogoScooter__3lsAR')
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -87,3 +90,8 @@ class OrderPage:
         self.driver.find_element(*self.confirmation_button).click()
 
 
+    def click_logo_yandex(self):
+        self.driver.find_element(*self.logo_yandex).click()
+
+    def click_logo_samokat(self):
+        self.driver.find_element(*self.logo_samokat).click()
