@@ -1,6 +1,6 @@
 import pytest
-from pages.main_page import MainPage
-from pages.order_page import OrderPage
+from pages.main_page1 import MainPage
+from pages.order_page1 import OrderPage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from helper import generate_user_data

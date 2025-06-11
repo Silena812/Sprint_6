@@ -1,5 +1,5 @@
 import pytest
-from pages.main_page import MainPage
+from pages.main_page1 import MainPage
 faq_questions = [
     "Сколько это стоит? И как оплатить?",
     "Хочу сразу несколько самокатов! Так можно?",

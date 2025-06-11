@@ -1,33 +1,38 @@
+import allure
+
+from conftest import driver
+from pages.base_page import BasePage
+from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.common.by import By
+from curl import *
 
 
-class MainPage:
-    def __init__(self, driver):
-        self.driver = driver
-
-    faq_questions = (By.CSS_SELECTOR, 'div.accordion__button[data-accordion-component="AccordionItemButton"]')
-    faq_answers = (By.CSS_SELECTOR, 'div.accordion__panel')
-
-    top_order_button = (By.CLASS_NAME, 'Button_Button__ra12g')
-    low_order_button = (By.CSS_SELECTOR, '.Button_Button__ra12g.Button_Middle__1CSJM')
-
-    logo_yandex = (By.CLASS_NAME, 'Header_LogoYandex__3TSOI')
-    logo_samokat = (By.CLASS_NAME, 'Header_LogoScooter__3lsAR')
+class MainPage(BasePage):
 
     def click_question(self, index):
-        self.driver.find_elements(*self.faq_questions)[index].click()
+        self.click_on_element(MainPageLocators.FAQ_QUESTIONS)[index].click()
 
     def get_answer_text(self, index):
-        return self.driver.find_elements(*self.faq_answers)[index].text
+        return self.get_text_on_element(MainPageLocators.FAQ_ANSWERS)[index].text
 
     def click_top_order_button(self):
-        self.driver.find_element(*self.top_order_button).click()
+        self.click_on_element(MainPageLocators.TOP_ORDER_BUTTON)
 
     def click_low_order_button(self):
-        self.driver.find_element(*self.low_order_button).click()
+        self.click_on_element(MainPageLocators.LOW_ORDER_BUTTON)
 
     def click_logo_yandex(self):
-        self.driver.find_element(*self.logo_yandex).click()
+        self.click_on_element(MainPageLocators.LOGO_YANDEX)
+
+    def logo_yandex_goto_dzen(self):
+        self.click_logo_yandex()
+        self.switch_window()
+        self.wait_for_url_contains("dzen.ru")
+        return self.get_current_url()
 
     def click_logo_samokat(self):
-        self.driver.find_element(*self.logo_samokat).click()
+        self.click_on_element(MainPageLocators.LOGO_SAMOKAT)
+
+    def logo_samokat_goto_mainpage(self):
+        self.click_logo_samokat()
+        return self.get_current_url()

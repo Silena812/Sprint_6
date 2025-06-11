@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
 
-class OrderPage:
+class OrderPage1:
     first_name = (By.XPATH, "//input[@placeholder='* Имя']")
     last_name = (By.XPATH, "//input[@placeholder='* Фамилия']")
     address = (By.XPATH, "//input[@placeholder='* Адрес: куда привезти заказ']")
