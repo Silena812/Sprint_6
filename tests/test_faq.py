@@ -1,37 +1,21 @@
 import pytest
-from pages.main_page1 import MainPage
-faq_questions = [
-    "Сколько это стоит? И как оплатить?",
-    "Хочу сразу несколько самокатов! Так можно?",
-    "Как рассчитывается время аренды?",
-    "Можно ли заказать самокат прямо на сегодня?",
-    "Можно ли продлить заказ или вернуть самокат раньше?",
-    "Вы привозите зарядку вместе с самокатом?",
-    "Можно ли отменить заказ?",
-    "Я жизу за МКАДом, привезёте?"
-]
+import allure
+from pages.main_page import MainPage
+from data import Accordeon
 
-faq_answers = [
-    "Сутки — 400 рублей. Оплата курьеру — наличными или картой.",
-    "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.",
-    "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.",
-    "Только начиная с завтрашнего дня. Но скоро станем расторопнее.",
-    "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.",
-    "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.",
-    "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.",
-    "Да, обязательно. Всем самокатов! И Москве, и Московской области."
-]
+class TestFAQ:
+
+    @allure.title("Тест текста ответов в разделе Вопросы о важном")
+    @allure.description("Тест кликает по-порядку на вопрос, получает текст ответа и сравнивает его с ожидаемым")
+    @pytest.mark.parametrize('question_number, expected_text', Accordeon.faq_answers)
+    def test_faq_answers(self, driver, question_number, expected_text):
+        mainpage = MainPage(driver)
+        mainpage.scroll_to_faq()
+        mainpage.wait_for_faq_questions(question_number)
+        mainpage.click_question(question_number)
+        mainpage.wait_for_faq_answer(question_number)
+        assert mainpage.get_text_faq_answer(question_number) == expected_text
 
 
-def normalize_text(text):
-    return " ".join(text.split()).lower()
 
-@pytest.mark.parametrize("index", range(len(faq_questions)))
-def test_faq_answer_text(driver, index):
-    page = MainPage(driver)
-    page.click_question(index)
-    answer_text = page.get_answer_text(index)
-    expected_answer = faq_answers[index]
 
-    assert normalize_text(expected_answer) in normalize_text(answer_text), \
-        f"Ответ на вопрос '{faq_questions[index]}' не совпадает.\nОжидали: {expected_answer}\nПолучили: {answer_text}"

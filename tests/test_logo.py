@@ -1,25 +1,20 @@
 import pytest
-from pages.main_page1 import MainPage
-from pages.order_page1 import OrderPage
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import allure
+from pages.main_page import MainPage
+from pages.order_page import OrderPage
 from curl import *
 
+class TestLogo:
 
-def test_logo_samokat_goto_mainpage(driver):
-    orderpage = OrderPage(driver)
+    @allure.title("Проверяем переход с лого Самокат на главную страницу")
+    def test_logo_samokat_goto_mainpage(self,driver):
+        orderpage = OrderPage(driver)
+        url = orderpage.logo_samokat_goto_mainpage()
+        assert url == main_site
 
+    @allure.title("Проверяем переход с лого Самокат на главную страницу")
+    def test_logo_yandex_goto_dzen(self,driver):
+        mainpage = MainPage(driver)
+        url = mainpage.logo_yandex_goto_dzen()
 
-    orderpage.click_logo_samokat()
-    assert driver.current_url == main_site
-
-def test_logo_yandex_goto_dzen(driver):
-    mainpage = MainPage(driver)
-
-    mainpage.click_logo_yandex()
-
-    driver.switch_to.window(driver.window_handles[1])
-
-    WebDriverWait(driver, 5).until(EC.url_contains("dzen.ru"))
-
-    assert "dzen.ru" in driver.current_url
+        assert "dzen.ru" in url
