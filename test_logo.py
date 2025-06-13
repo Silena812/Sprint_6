@@ -2,8 +2,6 @@ import pytest
 import allure
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from curl import *
 
 class TestLogo:

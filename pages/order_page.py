@@ -48,10 +48,8 @@ class OrderPage(BasePage):
     def set_period(self, period_text):
         self.click_on_element(MakeOrderLocators.PERIOD_DROPDOWN)  # открыть дропдаун
 
-        # получить все опции
         period_options = self.find_elements(MakeOrderLocators.PERIOD_OPTIONS, timeout=5)
 
-        # пройтись по опциям и кликнуть по нужной
         for option in period_options:
             if option.text == period_text:
                 option.click()
