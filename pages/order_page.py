@@ -46,7 +46,7 @@ class OrderPage(BasePage):
 
     @allure.step("Выбрать срок аренды")
     def set_period(self, period_text):
-        self.click_on_element(MakeOrderLocators.PERIOD_DROPDOWN)  # открыть дропдаун
+        self.click_on_element(MakeOrderLocators.PERIOD_DROPDOWN)
 
         period_options = self.find_elements(MakeOrderLocators.PERIOD_OPTIONS, timeout=5)
 
@@ -88,7 +88,7 @@ class OrderPage(BasePage):
         self.click_order_button()
         self.click_confirmation_button()
 
-    @allure.step("Проверить появления окно с сообщением об успешном создании заказа")
+    @allure.step("Проверить появления окна с сообщением об успешном создании заказа")
     def check_confirmation_window(self):
         return self.wait_for_element(MakeOrderLocators.CHECK_STATUS_BUTTON)
 

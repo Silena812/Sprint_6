@@ -45,30 +45,3 @@ class MainPage(BasePage):
     def get_text_faq_answer(self, data):
         return self.get_text_on_element(MainPageLocators.FAQ_ANSWERS[data])
 
-    #@allure.step("Подождать появление нужного номера вопроса")
-    #def wait_for_faq(self,question_number):
-        #self.wait_for_element(MainPageLocators.FAQ_QUESTIONS[question_number])
-
-    #@allure.step("Подождать появление нужного номера ответа")
-    #def wait_for_faq_answer(self, question_number):
-        #self.wait_for_element(MainPageLocators.FAQ_ANSWERS[question_number])
-
-    #@allure.step("Получить текст ответа")
-    #def get_text_faq_answer(self, question_number):
-        #self.get_text_on_element(MainPageLocators.FAQ_ANSWERS[question_number])
-
-    #def click_faq_question(self, index):
-        # questions = self.driver.find_elements(*MainPageLocators.FAQ_QUESTIONS)
-    #  questions[index].click()
-
-        #  def wait_for_faq_answer(self, index):
-    #    questions = self.driver.find_elements(*MainPageLocators.FAQ_QUESTIONS)
-        #      aria_controls = questions[index].get_attribute("aria-controls")
-        #     self.wait.until(EC.visibility_of_element_located((By.ID, aria_controls)))
-
-        #  def get_faq_answer_text(self, index):
-        #    questions = self.driver.find_elements(*MainPageLocators.FAQ_QUESTIONS)
-        #       answer_id = questions[index].get_attribute("aria-controls")
-        #   answer = self.driver.find_element(By.ID, answer_id)
-    #   return answer.text
-
