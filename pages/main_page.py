@@ -1,10 +1,20 @@
 import allure
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
+from selenium.common.exceptions import TimeoutException
 
 
 
 class MainPage(BasePage):
+
+    @allure.step("Закрыть баннер с куки")
+    def close_cookie_banner(self):
+        try:
+            self.click_on_element(MainPageLocators.COOKIE_CLOSE_BUTTON, timeout=5)
+            self.wait_until_invisible(MainPageLocators.COOKIE_BANNER, timeout=5)
+        except TimeoutException:
+
+            pass
 
     @allure.step("Клик на верхнюю кнопку Заказать")
     def click_top_order_button(self):

@@ -7,7 +7,6 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-
     @allure.step("Подождать видимости элемента")
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
@@ -56,3 +55,9 @@ class BasePage:
         self.wait_for_element(locator, timeout)
         return self.driver.find_elements(*locator)
 
+
+    @allure.step("Подождать, пока элемент станет невидимым")
+    def wait_until_invisible(self, locator, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            EC.invisibility_of_element_located(locator)
+        )

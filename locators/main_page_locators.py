@@ -33,3 +33,6 @@ class MainPageLocators:
     LOGO_YANDEX = (By.CLASS_NAME, 'Header_LogoYandex__3TSOI')
     LOGO_SAMOKAT = (By.CLASS_NAME, 'Header_LogoScooter__3lsAR')
 
+    COOKIE_CLOSE_BUTTON = (By.ID, "rcc-confirm-button")
+    COOKIE_BANNER = (By.CLASS_NAME, "App_CookieConsent__1yUIN")
+
