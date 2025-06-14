@@ -1,0 +1,20 @@
+import pytest
+import allure
+from pages.main_page import MainPage
+from pages.order_page import OrderPage
+from curl import *
+
+class TestLogo:
+
+    @allure.title("Проверяем переход с лого Самокат на главную страницу")
+    def test_logo_samokat_goto_mainpage(self,driver):
+        orderpage = OrderPage(driver)
+        url = orderpage.logo_samokat_goto_mainpage()
+        assert url == main_site
+
+    @allure.title("Проверяем переход с лого Самокат на главную страницу")
+    def test_logo_yandex_goto_dzen(self,driver):
+        mainpage = MainPage(driver)
+        url = mainpage.logo_yandex_goto_dzen()
+
+        assert "dzen.ru" in url
